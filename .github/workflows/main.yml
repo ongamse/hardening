@@ -28,7 +28,7 @@ jobs:
     - name: preZero Static Analysis
       run: |
         ${GITHUB_WORKSPACE}/sl --version
-        ${GITHUB_WORKSPACE}/sl analyze --strict --wait --verbose --app HardeningGH --tag branch=${{ github.head_ref }} --oss-recursive --jssrc .
+        SYFT_GO_INCLUDE_DEV_DEPENDENCIES=true ${GITHUB_WORKSPACE}/sl analyze --strict --wait --verbose --app HardeningGH --tag branch=${{ github.head_ref }} --oss-project-dir . --jssrc .
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
         SHIFTLEFT_API_HOST: www.shiftleft.io
